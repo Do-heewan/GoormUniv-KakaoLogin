@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ForgetPage = () => {
-  return <div>여기서 찾아보세요 ㅋㅋ</div>;
+  return <div>forget 페이지 입니다.</div>;
 };
 
 export default ForgetPage;

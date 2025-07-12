@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <ForgetPage />,
   },
   {
-    path: '/redirect',
+    path: '/auth/kakao/callback',
     element: <Redirection />,
   },
   {

@@ -7,8 +7,10 @@ const Redirection = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(import.meta.env.REACT_APP_URL);
-    axios.post(`/redirect?code=${code}`).then((r) => {
+    console.log(import.meta.env.VITE_REDIRECT_URI);
+    console.log('인가코드', code);
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/kakao/login?code=${code}`).then((r) => {
+      console.log('성공');
       console.log(r.data);
 
       // 토큰을 받아서 localStorage같은 곳에 저장하는 코드를 여기에 쓴다.
