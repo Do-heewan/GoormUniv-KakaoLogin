@@ -109,14 +109,7 @@ function LoginPage() {
           <Button type="submit">로그인</Button>
         </form>
 
-        <KakaoButton onClick={loginHandler}>
-          <img
-            src="https://developers.kakao.com/assets/img/about/logos/kakaologin/logo/kakao_account_login_btn_medium_narrow.png"
-            alt="그~림"
-            style={{ height: '20px', marginRight: '8px' }}
-          />
-          Login with Kakao
-        </KakaoButton>
+        <KakaoButton onClick={loginHandler}>Login with Kakao</KakaoButton>
 
         <ForgotPassword>
           <a href="/forget">Forgot password?</a>
