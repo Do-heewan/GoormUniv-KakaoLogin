@@ -4,7 +4,7 @@ const PageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f9fafb;
+  background-color: white;
 `;
 
 const LoginBox = styled.div`
@@ -12,7 +12,7 @@ const LoginBox = styled.div`
   max-width: 400px;
   background-color: white;
   padding: 40px 32px;
-  border: 1px solid black;
+  border: none;
   border-radius: 20px;
 `;
 
