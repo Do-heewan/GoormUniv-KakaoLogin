@@ -9,7 +9,8 @@ const Redirection = () => {
   useEffect(() => {
     console.log(import.meta.env.VITE_REDIRECT_URI);
     console.log('인가코드', code);
-    axios.get(`${import.meta.env.VITE_BACKEND_URL}/redirect?code=${code}`).then((r) => {
+
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/login?code=${code}`).then((r) => {
       console.log('성공');
       console.log(r);
 
