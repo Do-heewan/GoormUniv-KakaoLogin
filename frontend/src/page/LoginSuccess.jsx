@@ -75,15 +75,6 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <TopBar>
-        <HomeBadge>HOME</HomeBadge>
-        <RightMenu>
-          <MenuItem>마이페이지</MenuItem>
-          <MenuItem>로그아웃</MenuItem>
-          <UserIcon>👤</UserIcon>
-        </RightMenu>
-      </TopBar>
-
       <Title>9oormthonUNIV_4th_UOU</Title>
 
       <ButtonContainer>
