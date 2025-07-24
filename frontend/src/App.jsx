@@ -5,7 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './page/LoginPage';
 import ForgetPage from './page/ForgetPage';
 import Redirection from './page/Redirection';
-import { Outlet, RouterProvider, createBrowserr } from 'react-router-dom';
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LoginSuccess from './page/LoginSuccess';
 import Community from './page/Child/Community';
 import Project from './page/Child/Project';
