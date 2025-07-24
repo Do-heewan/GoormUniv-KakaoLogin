@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Logo from '../../asset/svg/logo';
+import Logo from '../../asset/svg/Logo';
 import ProfileImg from '../../asset/svg/ProfileImg';
 
 const MainLayout = () => {
