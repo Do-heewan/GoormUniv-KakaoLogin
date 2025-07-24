@@ -13,17 +13,14 @@ const Redirection = () => {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/redirect?code=${code}`).then((r) => {
       console.log('성공');
       console.log(r);
-      console.log(r.data);
-      console.log(r.data.data);
-      console.log(r.Object);
+
       // 토큰을 받아서 localStorage같은 곳에 저장하는 코드를 여기에 쓴다.
       localStorage.setItem('user_email', r.data.email);
       localStorage.setItem('user_id', r.data.id);
       localStorage.setItem('user_name', r.data.nickname);
       console.log('로컬스토리지 저장 완료');
-      setTimeout(() => {
-        navigate('/logined');
-      }, 100);
+
+      navigate('/logined');
     });
   }, []);
 
