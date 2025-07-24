@@ -1,5 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Logo from '../../asset/svg/logo';
+import ProfileImg from '../../asset/svg/ProfileImg';
 
 const MainLayout = () => {
   const navigate = useNavigate();
@@ -17,16 +19,41 @@ export default MainLayout;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
 `;
 
 const ToolBar = () => {
   return (
     <>
-      <div>ToolBar 입니다</div>
+      <ContentWrapper>
+        <Logo />
+        <ButtonBox>
+          <StyledButton>마이페이지</StyledButton>
+          <StyledButton>로그아웃</StyledButton>
+          <StyledButton>
+            <ProfileImg />
+          </StyledButton>
+        </ButtonBox>
+      </ContentWrapper>
     </>
   );
 };
 
-const NavItem = styled.div`
+const ContentWrapper = styled.div`
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  background-color: white;
   cursor: pointer;
+  height: fit-content;
 `;
