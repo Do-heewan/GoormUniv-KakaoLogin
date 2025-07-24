@@ -20,7 +20,10 @@ const Redirection = () => {
       localStorage.setItem('user_email', r.data.email);
       localStorage.setItem('user_id', r.data.id);
       localStorage.setItem('user_name', r.data.nickname);
-      navigate('/logined');
+      console.log('로컬스토리지 저장 완료');
+      setTimeout(() => {
+        navigate('/logined');
+      }, 100);
     });
   }, []);
 
