@@ -1,4 +1,38 @@
 import styled from 'styled-components';
+
+const link = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_REST_API_KEY}&redirect_uri=${
+  import.meta.env.VITE_REDIRECT_URI
+}&response_type=code`;
+function loginHandler() {
+  window.location.href = link;
+}
+function LoginPage() {
+  return (
+    <PageWrapper>
+      <LoginBox>
+        <Title>9oormthonUNIV_4th_UOU</Title>
+        <form>
+          <label htmlFor="id">아이디</label>
+          <Input type="text" id="id" placeholder="아이디를 입력하세요.." />
+
+          <label htmlFor="password">비밀번호</label>
+          <Input type="password" id="password" placeholder="비밀번호를 입력하세요.." />
+
+          <Button type="submit">로그인</Button>
+        </form>
+
+        <KakaoButton onClick={loginHandler}>Login with Kakao</KakaoButton>
+
+        <ForgotPassword>
+          <a href="/forget">Forgot password?</a>
+        </ForgotPassword>
+      </LoginBox>
+    </PageWrapper>
+  );
+}
+
+export default LoginPage;
+
 const PageWrapper = styled.div`
   min-height: 100vh; //최소 높이 보장
   display: flex;
@@ -88,35 +122,3 @@ const ForgotPassword = styled.div`
     }
   }
 `;
-const link = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_REST_API_KEY}&redirect_uri=${
-  import.meta.env.VITE_REDIRECT_URI
-}&response_type=code`;
-function loginHandler() {
-  window.location.href = link;
-}
-function LoginPage() {
-  return (
-    <PageWrapper>
-      <LoginBox>
-        <Title>9oormthonUNIV_4th_UOU</Title>
-        <form>
-          <label htmlFor="id">아이디</label>
-          <Input type="text" id="id" placeholder="아이디를 입력하세요.." />
-
-          <label htmlFor="password">비밀번호</label>
-          <Input type="password" id="password" placeholder="비밀번호를 입력하세요.." />
-
-          <Button type="submit">로그인</Button>
-        </form>
-
-        <KakaoButton onClick={loginHandler}>Login with Kakao</KakaoButton>
-
-        <ForgotPassword>
-          <a href="/forget">Forgot password?</a>
-        </ForgotPassword>
-      </LoginBox>
-    </PageWrapper>
-  );
-}
-
-export default LoginPage;

@@ -23,14 +23,24 @@ const Wrapper = styled.div`
 `;
 
 const ToolBar = () => {
+  const handleGoMypage = () => {
+    console.log('not yet');
+  };
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    navigate('/');
+  };
+  const handleGoProfile = () => {
+    console.log('not yet');
+  };
   return (
     <>
       <ContentWrapper>
         <Logo />
         <ButtonBox>
-          <StyledButton>마이페이지</StyledButton>
-          <StyledButton>로그아웃</StyledButton>
-          <StyledButton>
+          <StyledButton onClick={handleGoMypage}>마이페이지</StyledButton>
+          <StyledButton onClick={handleLogout}>로그아웃</StyledButton>
+          <StyledButton onClick={handleGoProfile}>
             <ProfileImg />
           </StyledButton>
         </ButtonBox>
