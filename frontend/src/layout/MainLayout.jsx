@@ -23,6 +23,7 @@ const Wrapper = styled.div`
 `;
 
 const ToolBar = () => {
+  const navigate = useNavigate();
   const handleGoMypage = () => {
     console.log('not yet');
   };
