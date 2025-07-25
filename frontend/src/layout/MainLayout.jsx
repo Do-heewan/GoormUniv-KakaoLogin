@@ -29,6 +29,10 @@ const ToolBar = () => {
   };
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('user_email');
+    localStorage.removeItem('user_name');
+
     navigate('/');
   };
   const handleGoProfile = () => {
