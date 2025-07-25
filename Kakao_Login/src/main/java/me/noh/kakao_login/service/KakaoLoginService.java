@@ -1,7 +1,6 @@
 package me.noh.kakao_login.service;
 
 import io.netty.handler.codec.http.HttpHeaderValues;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,8 +13,8 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @Service
 public class KakaoLoginService {
-    private String clientId;
-    private String clientSecret;
+    private final String clientId;
+    private final String clientSecret;
     private final String KAUTH_TOKEN_URL_HOST;
     private final String KAUTH_USER_URL_HOST;
 

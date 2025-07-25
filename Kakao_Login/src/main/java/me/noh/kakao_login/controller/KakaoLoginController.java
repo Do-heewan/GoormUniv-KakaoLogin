@@ -1,11 +1,9 @@
 package me.noh.kakao_login.controller;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.noh.kakao_login.service.KakaoLoginService;
 import me.noh.kakao_login.service.KakaoUserInfoResponseDto;
-import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +28,7 @@ public class KakaoLoginController {
         String username = userInfo.getKakaoAccount().getProfile().getNickName();
         String userEmail = userInfo.getKakaoAccount().getEmail();
 
-        // System.out.println(userId + username + userEmail);
+        System.out.println(userId + username + userEmail);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

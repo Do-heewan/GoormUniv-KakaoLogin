@@ -1,0 +1,8 @@
+jwt:
+  issuer: nhw3152@gmail.com
+  secret_key: study-springboot
+
+kakao:
+  client_id: 4e247c5fe55c1706be1c8d8d0cd33069
+  client_secret: xkPx003tTqhR9uttaF5ZiVwztcd2WoaS
+  redirect_uri: https://groom-kakao-login.netlify.app/redirect
