@@ -11,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -37,9 +40,14 @@ public class KakaoLoginController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<String> logout(@RequestHeader("Authorization") String accessToken) {
-        String bearerToken = kakaoLoginService.getAccessTokenFromKakao(accessToken);
-        String response = kakaoLoginService.logout(bearerToken);
+    public ResponseEntity<Map<String, Object>> logout(@RequestHeader("Authorization") String authorizationHeader) {
+
+        String accessToken = authorizationHeader.substring("Bearer ".length()).trim();
+        String logoutResponse = kakaoLoginService.logout(accessToken);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("kakaoResponse", logoutResponse); // 로그아웃 응답 (id)
+        response.put("accessToken", accessToken); // accessToken 추가
 
         return ResponseEntity.ok(response);
     }

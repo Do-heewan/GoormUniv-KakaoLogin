@@ -47,7 +47,7 @@ public class KakaoLoginService {
                 .block();
 
 
-//        log.info(" [Kakao Service] Access Token ------> {}", kakaoTokenResponseDto.getAccessToken());
+        log.info(" [Kakao Service] Access Token ------> {}", kakaoTokenResponseDto.getAccessToken());
 //        log.info(" [Kakao Service] Refresh Token ------> {}", kakaoTokenResponseDto.getRefreshToken());
 //        log.info(" [Kakao Service] Id Token ------> {}", kakaoTokenResponseDto.getIdToken());
 //        log.info(" [Kakao Service] Scope ------> {}", kakaoTokenResponseDto.getScope());
@@ -82,15 +82,11 @@ public class KakaoLoginService {
 
         String logout = WebClient.create(KAUTH_USER_URL_HOST)
                 .post()
-                .uri(uriBuilder -> uriBuilder
-                        .scheme("https")
-                        .path("/v1/user/logout")
-                        .build(true))
+                .uri("/v1/user/logout")
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
-                .header(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded")
                 .retrieve()
                 .bodyToMono(String.class)
-                .block(); // 동기적으로 응답 대기
+                .block(); // 동기 응답 대기
 
         return logout;
     }
