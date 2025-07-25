@@ -77,4 +77,21 @@ public class KakaoLoginService {
 
         return userInfo;
     }
+
+    public String logout(String accessToken) {
+
+        String logout = WebClient.create(KAUTH_USER_URL_HOST)
+                .post()
+                .uri(uriBuilder -> uriBuilder
+                        .scheme("https")
+                        .path("/v1/user/logout")
+                        .build(true))
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
+                .header(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block(); // 동기적으로 응답 대기
+
+        return logout;
+    }
 }

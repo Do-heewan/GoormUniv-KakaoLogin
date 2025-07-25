@@ -3,7 +3,6 @@ package me.noh.kakao_login.controller;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.noh.kakao_login.dto.UserResponseDto;
 import me.noh.kakao_login.service.KakaoLoginService;
 import me.noh.kakao_login.service.KakaoUserInfoResponseDto;
 import org.apache.catalina.User;
@@ -35,5 +34,13 @@ public class KakaoLoginController {
         System.out.println(userId + username + userEmail);
 
         return ResponseEntity.ok(userInfo);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(@RequestHeader("Authorization") String accessToken) {
+        String bearerToken = kakaoLoginService.getAccessTokenFromKakao(accessToken);
+        String response = kakaoLoginService.logout(bearerToken);
+
+        return ResponseEntity.ok(response);
     }
 }
