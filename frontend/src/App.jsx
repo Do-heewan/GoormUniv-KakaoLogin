@@ -1,26 +1,32 @@
 import React from 'react';
+import LoginLayout from './layout/LoginLayout';
+import MainLayout from './layout/MainLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './page/LoginPage';
 import ForgetPage from './page/ForgetPage';
 import Redirection from './page/Redirection';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LoginSuccess from './page/LoginSuccess';
+import Community from './page/Child/Community';
+import Project from './page/Child/Project';
+import Study from './page/Child/Study';
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <LoginPage />,
-    errorElement: <div>오류 페이지</div>,
+    element: <LoginLayout />,
+    children: [
+      { path: '/', element: <LoginPage /> },
+      { path: '/forget', element: <ForgetPage /> },
+      { path: '/redirect', element: <Redirection /> },
+    ],
   },
   {
-    path: '/forget',
-    element: <ForgetPage />,
-  },
-  {
-    path: '/auth/kakao/callback',
-    element: <Redirection />,
-  },
-  {
-    path: '/good',
-    element: <LoginSuccess />,
+    element: <MainLayout />,
+    children: [
+      { path: '/logined', element: <LoginSuccess /> },
+      { path: '/project', element: <Project /> },
+      { path: '/study', element: <Study /> },
+      { path: '/community', element: <Community /> },
+    ],
   },
 ]);
 const App = () => {

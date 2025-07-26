@@ -9,14 +9,18 @@ const Redirection = () => {
   useEffect(() => {
     console.log(import.meta.env.VITE_REDIRECT_URI);
     console.log('인가코드', code);
-    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/kakao/login?code=${code}`).then((r) => {
+
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/redirect?code=${code}`).then((r) => {
       console.log('성공');
-      console.log(r.data);
+      console.log(r);
 
       // 토큰을 받아서 localStorage같은 곳에 저장하는 코드를 여기에 쓴다.
-      localStorage.setItem('name', r.data.user_name); // 일단 이름만 저장했다.
+      localStorage.setItem('user_email', r.data.email);
+      localStorage.setItem('user_id', r.data.id);
+      localStorage.setItem('user_name', r.data.nickname);
+      console.log('로컬스토리지 저장 완료');
 
-      navigate('/good');
+      navigate('/logined');
     });
   }, []);
 
