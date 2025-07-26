@@ -23,8 +23,7 @@ public class KakaoLoginController {
     final KakaoLoginService kakaoLoginService;
 
     @GetMapping("/redirect")
-    public ResponseEntity<KakaoUserInfoResponseDto> redirect(@RequestParam("code") String code) {
-        // System.out.println(code);
+    public ResponseEntity<Map<String, Object>> redirect(@RequestParam("code") String code) {
         String token = kakaoLoginService.getAccessTokenFromKakao(code); // code로 token 발급
 
         KakaoUserInfoResponseDto userInfo = kakaoLoginService.getUserInfo(token); // token으로 user Info 불러오기
@@ -33,22 +32,21 @@ public class KakaoLoginController {
         String username = userInfo.getKakaoAccount().getProfile().getNickName();
         String userEmail = userInfo.getKakaoAccount().getEmail();
 
-        System.out.println(userInfo);
-        System.out.println(userId + username + userEmail);
+        Map<String, Object> response = new HashMap<>(); // id, email, name, token 반환
+        response.put("accessToken", token);
+        response.put("userId", userId);
+        response.put("userName", username);
+        response.put("userEmail", userEmail);
 
-        return ResponseEntity.ok(userInfo);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<Map<String, Object>> logout(@RequestHeader("Authorization") String authorizationHeader) {
+    public ResponseEntity<String> logout(@RequestHeader("Authorization") String authorizationHeader) {
 
         String accessToken = authorizationHeader.substring("Bearer ".length()).trim();
         String logoutResponse = kakaoLoginService.logout(accessToken);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("kakaoResponse", logoutResponse); // 로그아웃 응답 (id)
-        response.put("accessToken", accessToken); // accessToken 추가
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(logoutResponse);
     }
 }
