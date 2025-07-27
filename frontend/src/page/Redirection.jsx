@@ -15,9 +15,10 @@ const Redirection = () => {
       console.log(r);
 
       // 토큰을 받아서 localStorage같은 곳에 저장하는 코드를 여기에 쓴다.
-      localStorage.setItem('user_email', r.data.email);
-      localStorage.setItem('user_id', r.data.id);
-      localStorage.setItem('user_name', r.data.nickname);
+      localStorage.setItem('accessToken', r.data.accessToken);
+      localStorage.setItem('userEmail', r.data.userEmail);
+      localStorage.setItem('userId', r.data.userId);
+      localStorage.setItem('userName', r.data.userName);
       console.log('로컬스토리지 저장 완료');
 
       navigate('/logined');

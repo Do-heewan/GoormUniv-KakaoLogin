@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const link = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_REST_API_KEY}&redirect_uri=${
@@ -7,18 +9,58 @@ function loginHandler() {
   window.location.href = link;
 }
 function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [pw, setPw] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // 이게 핵심이다
+    try {
+      const r = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/login`, {
+        //형식에 따라 달리함
+        email,
+        pw,
+      });
+      // const { accessToken, user_id, user_name } = r.data;
+
+      // localStorage.setItem('accessToken', accessToken);
+      // localStorage.setItem('user_id', user_id);
+      // localStorage.setItem('user_name', user_name);
+      console.log('로그인 폼 제출됨');
+    } catch (err) {
+      console.error('로그인 실패', err);
+      alert('콘솔 확인');
+    }
+  };
+
+  const handleCheckFormData = () => {
+    alert(`email: ${email}, pw: ${pw}`);
+  };
   return (
     <PageWrapper>
       <LoginBox>
         <Title>9oormthonUNIV_4th_UOU</Title>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="id">아이디</label>
-          <Input type="text" id="id" placeholder="아이디를 입력하세요.." />
+          <Input
+            type="email"
+            id="id"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="아이디를 입력하세요.."
+          />
 
           <label htmlFor="password">비밀번호</label>
-          <Input type="password" id="password" placeholder="비밀번호를 입력하세요.." />
+          <Input
+            type="password"
+            id="password"
+            value={pw}
+            onChange={(e) => setPw(e.target.value)}
+            placeholder="비밀번호를 입력하세요.."
+          />
 
-          <Button type="submit">로그인</Button>
+          <Button onClick={handleCheckFormData} type="submit">
+            로그인
+          </Button>
         </form>
 
         <KakaoButton onClick={loginHandler}>Login with Kakao</KakaoButton>
