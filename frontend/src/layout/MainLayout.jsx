@@ -2,10 +2,8 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../../asset/svg/Logo';
 import ProfileImg from '../../asset/svg/ProfileImg';
-
+import axios from 'axios';
 const MainLayout = () => {
-  const navigate = useNavigate();
-
   return (
     <Wrapper>
       <ToolBar></ToolBar>
@@ -22,19 +20,44 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 
+// 상단 바
 const ToolBar = () => {
-  const navigate = useNavigate();
+  // 마이페이지 버튼
   const handleGoMypage = () => {
     console.log('not yet');
   };
-  const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('user_email');
-    localStorage.removeItem('user_name');
 
-    navigate('/');
+  // 로그아웃 버튼
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem('accessToken');
+
+      await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/logout`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert('로그아웃 성공');
+
+      // 로컬스토리지 제거
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('user_id');
+      localStorage.removeItem('user_email');
+      localStorage.removeItem('user_name');
+
+      // 새로고침으로 전체 상태 초기화
+      window.location.href = '/';
+    } catch (err) {
+      console.error('로그아웃 실패:', err);
+      alert('로그아웃 실패. 다시 시도해 주세요.');
+    }
   };
+
+  // 프로필사진 버튼
   const handleGoProfile = () => {
     console.log('not yet');
   };

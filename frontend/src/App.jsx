@@ -20,7 +20,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    element: <MainLayout />,
+    element: (
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>
+    ),
     children: [
       { path: '/logined', element: <LoginSuccess /> },
       { path: '/project', element: <Project /> },
